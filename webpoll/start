@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+SRV_IP="192.168.112.65"
+DEV_FILE="device.conf"
+DEV_MAC="e8:9a:8f:a3:06:27"
+DEV_NAME="lenovo"
+
+pid=$(ps -e | grep webpoll | awk '{print $1}')
+if [ -n $pid ]; then
+    sudo kill -9 $pid > /dev/null 2>&1
+fi
+
+sudo webpoll -s $SRV_IP -f $DEV_FILE -m $DEV_MAC -i $DEV_NAME &
+
+exit 0
