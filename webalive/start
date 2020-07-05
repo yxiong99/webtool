@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+SRV_IP="192.168.112.65"
+DEV_MAC="e8:9a:8f:a3:06:27"
+DEV_NAME="lenovo"
+
+pid=$(ps -e | grep webalive | awk '{print $1}')
+if [ -n $pid ]; then
+    sudo kill -9 $pid > /dev/null 2>&1
+fi
+
+sudo webalive -s $SRV_IP -m $DEV_MAC -i $DEV_NAME &
+
+exit 0

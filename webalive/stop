@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+pid=$(ps -e | grep webalive | awk '{print $1}')
+if [ -n $pid ]; then
+    sudo kill -9 $pid > /dev/null 2>&1
+fi
+exit 0
