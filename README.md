@@ -1,2 +1,2 @@
 # webtool
-Simple TCP based programsused  for indoor data communications
+Simple TCP based programs used  for indoor data communications
