@@ -16,6 +16,9 @@
 #include "utils.h"
 #include "task.h"
 
+extern void fsm_init(const FSM_CONFIG_T *fsm_config_ptr);
+extern void fsm_process(const FSM_CONFIG_T *fsm_config_ptr);
+
 //!
 //! Finite state machine loop
 //!
