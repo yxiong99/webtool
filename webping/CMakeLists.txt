@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 
 PROJECT( webping
-         VERSION 1.1.0
-         DESCRIPTION "Poll a file from a web server"
+         VERSION 1.1.2
+         DESCRIPTION "Echo ping from a web server"
          LANGUAGES C )
 
 set( CMAKE_BUILD_TYPE Debug )
@@ -13,15 +13,11 @@ ADD_EXECUTABLE( webping
                 src/task.c
                 src/cloud.c
                 src/parse.c
-                src/utils.c
-                src/fsm/config.c
-                src/fsm/functs.c
-                src/fsm/input.c
-                src/fsm/rhapsody.c )
+                src/utils.c )
 
 add_definitions( -DWEBPING )
 
-target_link_libraries( webping pthread )
+target_link_libraries( webping pthread fsm )
 
 include_directories( ${PROJECT_BINARY_DIR} )
 include_directories( ${PROJECT_SOURCE_DIR} )
