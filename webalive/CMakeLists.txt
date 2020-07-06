@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 PROJECT( webalive
-         VERSION 1.1.0
+         VERSION 1.1.2
          DESCRIPTION "Echo alive from a web server"
          LANGUAGES C )
 
@@ -13,15 +13,11 @@ ADD_EXECUTABLE( webalive
                 src/task.c
                 src/cloud.c
                 src/parse.c
-                src/utils.c
-                src/fsm/config.c
-                src/fsm/functs.c
-                src/fsm/input.c
-                src/fsm/rhapsody.c )
+                src/utils.c )
 
 add_definitions( -DWEBALIVE )
 
-target_link_libraries( webalive pthread )
+target_link_libraries( webalive pthread fsm )
 
 include_directories( ${PROJECT_BINARY_DIR} )
 include_directories( ${PROJECT_SOURCE_DIR} )
