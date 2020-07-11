@@ -7,25 +7,41 @@
  ***************************************************************************************************/
 
 #include <pthread.h>
+#include <signal.h>
 #include <sched.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
+#include <rhapsody.h>
 #include "private.h"
-#include "rhapsody.h"
 #include "utils.h"
 #include "task.h"
 
 extern void fsm_init(const FSM_CONFIG_T *fsm_config_ptr);
 extern void fsm_process(const FSM_CONFIG_T *fsm_config_ptr);
 
+volatile static int loop_done;
+
+//!
+//! Handle interrupt signals
+//!
+static void signal_handler(int signum)
+{
+   loop_done = 1;
+}
+
 //!
 //! Finite state machine loop
 //!
 static void* fsm_loop(void* arg)
 {
+   loop_done = 0;
+   signal(SIGINT,  &signal_handler);
+   signal(SIGQUIT, &signal_handler);
+   signal(SIGTERM, &signal_handler);
+
    fsm_init(&fsm_config);
-   for (;;)
+   while (!loop_done)
    {
       fsm_process(&fsm_config);
       if (get_task_completed())
