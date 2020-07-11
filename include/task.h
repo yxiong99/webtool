@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#define SERVER_NAME_DEF  "192.168.112.65"
+#define SERVER_NAME_DEF  "192.168.112.1"
 #ifdef WEBPOLL
 #define TARGET_FILE_DEF  "device.conf"
 #elif WEBGET
@@ -11,8 +11,8 @@
 #else
 #define TARGET_FILE_DEF  "alive"
 #endif
-#define DEVICE_ADDR_DEF  "e8:9a:8f:a3:06:27"
-#define DEVICE_NAME_DEF  "lenovo"
+#define DEVICE_ADDR_DEF  "00:00:00:00:00:00"
+#define DEVICE_NAME_DEF  "anonymous"
 
 #define SERVER_NAME_LEN  128
 #define TARGET_FILE_LEN  64
